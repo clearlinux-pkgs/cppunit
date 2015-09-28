@@ -4,7 +4,7 @@
 #
 Name     : cppunit
 Version  : 1.12.1
-Release  : 6
+Release  : 7
 URL      : http://downloads.sourceforge.net/cppunit/cppunit-1.12.1.tar.gz
 Source0  : http://downloads.sourceforge.net/cppunit/cppunit-1.12.1.tar.gz
 Summary  : C++ Port of JUnit Testing Framework
