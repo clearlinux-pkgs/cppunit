@@ -4,7 +4,7 @@
 #
 Name     : cppunit
 Version  : 1.12.1
-Release  : 9
+Release  : 10
 URL      : http://downloads.sourceforge.net/cppunit/cppunit-1.12.1.tar.gz
 Source0  : http://downloads.sourceforge.net/cppunit/cppunit-1.12.1.tar.gz
 Summary  : C++ Port of JUnit Testing Framework
@@ -13,7 +13,8 @@ License  : LGPL-2.1
 Requires: cppunit-bin
 Requires: cppunit-lib
 Requires: cppunit-doc
-BuildRequires : gfortran
+BuildRequires : doxygen
+BuildRequires : graphviz
 
 %description
 CppUnit is the C++ port of the famous JUnit framework for unit testing.
@@ -32,6 +33,7 @@ Summary: dev components for the cppunit package.
 Group: Development
 Requires: cppunit-lib
 Requires: cppunit-bin
+Provides: cppunit-devel
 
 %description dev
 dev components for the cppunit package.
@@ -58,9 +60,12 @@ lib components for the cppunit package.
 
 %build
 %configure --disable-static LDFLAGS="$LDFLAGS -ldl"
-make V=1 %{?_smp_mflags}
+make V=1  %{?_smp_mflags}
 
 %check
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
@@ -162,6 +167,7 @@ rm -rf %{buildroot}
 
 %files doc
 %defattr(-,root,root,-)
+%doc /usr/share/doc/cppunit/*
 %doc /usr/share/man/man1/*
 
 %files lib
