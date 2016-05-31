@@ -1,1 +1,1 @@
-LDFLAGS="$LDFLAGS -ldl"
+LDFLAGS="$LDFLAGS -ldl" --datadir=/usr/share/doc
