@@ -1,3 +1,41 @@
+  New in CppUnit 1.14.0:
+  ---------------------
+
+  - TestCaller supports any callable that can be put into
+    std::function<void()>.
+
+  - CPPUNIT_TEST_PARAMETERIZED executes a test for any value in
+    an iteratable.
+
+  - Added new Assertion macros: ASSERT_LESS, ASSERT_GREATER,
+                    ASSERT_LESSEQUAL, ASSERT_GREATEREQUAL
+
+* Portability:
+  - Always build with C++11.
+
+  - Always require RTTI support.
+
+  - Removed support for compilers that don't support
+    default template arguments with standard containers.
+
+  - Removed portability headers for wrapper around
+    standard containers.
+
+  - Support C++11 enum class in asserter.
+
+* Test Plug-in Runner: 
+  - Fixed crash on Win64 in test runner (fdo#81433)
+
+* Removed features
+
+  - QT test runner
+
+  - msvc6 test runners
+
+  - msvc6 plugin
+
+  - BeOS support
+
   New in CppUnit 1.13.2:
   ---------------------
 
@@ -154,7 +192,7 @@
     Win32DynamicLibraryManager.cpp.
 
   - MinGW, cygwin: enable build of shared library when using libtool. 
-    patch #1194394 contributed by Stéphane Fillod.
+    patch #1194394 contributed by StÃ©phane Fillod.
 
   - autotool: applied patch #1076398 contributed by Henner Sudek. Quote:
 		 "This patch allows AM_PATH_CPPUNIT to accept version
