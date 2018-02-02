@@ -4,7 +4,7 @@
 #
 Name     : cppunit
 Version  : 1.14.0
-Release  : 18
+Release  : 19
 URL      : http://dev-www.libreoffice.org/src/cppunit-1.14.0.tar.gz
 Source0  : http://dev-www.libreoffice.org/src/cppunit-1.14.0.tar.gz
 Summary  : The C++ Unit Test Library
