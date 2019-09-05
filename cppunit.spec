@@ -4,15 +4,15 @@
 #
 Name     : cppunit
 Version  : 1.14.0
-Release  : 20
+Release  : 21
 URL      : http://dev-www.libreoffice.org/src/cppunit-1.14.0.tar.gz
 Source0  : http://dev-www.libreoffice.org/src/cppunit-1.14.0.tar.gz
 Summary  : The C++ Unit Test Library
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: cppunit-bin
-Requires: cppunit-lib
-Requires: cppunit-doc
+Requires: cppunit-bin = %{version}-%{release}
+Requires: cppunit-lib = %{version}-%{release}
+Requires: cppunit-license = %{version}-%{release}
 BuildRequires : doxygen
 BuildRequires : graphviz
 
@@ -24,6 +24,7 @@ http://www.freedesktop.org/wiki/Software/cppunit
 %package bin
 Summary: bin components for the cppunit package.
 Group: Binaries
+Requires: cppunit-license = %{version}-%{release}
 
 %description bin
 bin components for the cppunit package.
@@ -32,9 +33,10 @@ bin components for the cppunit package.
 %package dev
 Summary: dev components for the cppunit package.
 Group: Development
-Requires: cppunit-lib
-Requires: cppunit-bin
-Provides: cppunit-devel
+Requires: cppunit-lib = %{version}-%{release}
+Requires: cppunit-bin = %{version}-%{release}
+Provides: cppunit-devel = %{version}-%{release}
+Requires: cppunit = %{version}-%{release}
 
 %description dev
 dev components for the cppunit package.
@@ -51,9 +53,18 @@ doc components for the cppunit package.
 %package lib
 Summary: lib components for the cppunit package.
 Group: Libraries
+Requires: cppunit-license = %{version}-%{release}
 
 %description lib
 lib components for the cppunit package.
+
+
+%package license
+Summary: license components for the cppunit package.
+Group: Default
+
+%description license
+license components for the cppunit package.
 
 
 %prep
@@ -63,21 +74,28 @@ lib components for the cppunit package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1492960992
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1567725911
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static LDFLAGS="$LDFLAGS -ldl" --datadir=/usr/share/doc
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+export GCC_IGNORE_WERROR=1 && make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1492960992
+export SOURCE_DATE_EPOCH=1567725911
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/cppunit
+cp COPYING %{buildroot}/usr/share/package-licenses/cppunit/COPYING
 %make_install
 
 %files
@@ -163,10 +181,14 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/cppunit.pc
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/cppunit/*
 
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libcppunit-1.14.so.0
 /usr/lib64/libcppunit-1.14.so.0.0.0
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/cppunit/COPYING
