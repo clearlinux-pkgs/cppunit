@@ -1,3 +1,246 @@
+2019-12-25  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [7e1c90fa717eb2253ca1901d4065f06b2469cfa2]
+
+	update NEWS
+
+
+2019-12-22  David Tardon  <dtardon@redhat.com>  [57f0b5697252fa238027fdd3052774055b69060b]
+
+	drop project files for old versions of MSVC
+
+	Change-Id: I36ceddb5a8a1f8e96b36a2e851338366cda1808d
+	Reviewed-on: https://gerrit.libreoffice.org/85662
+	Reviewed-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+	Tested-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+
+2019-12-22  David Tardon  <dtardon@redhat.com>  [c227e5402f4c7470bae34998f6e8ecd6752545cf]
+
+	remove traces of .ds[pw] files from docs
+
+	Change-Id: I6ebc31181ccfe379be96e979cda3717a991cf513
+	Reviewed-on: https://gerrit.libreoffice.org/85663
+	Reviewed-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+	Tested-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+
+2019-12-21  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [81cbaa728f595aa25819206dca6f71338686ad9e]
+
+	next version is going to be 1.15.1
+
+
+2019-12-21  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [8ed8126ec0c9ddd95c2d86ef81a95f6b405e05af]
+
+	add NEWS for 1.15.0 and 1.15.1
+
+
+2019-12-21  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [834f3a287387bd6230c98b0c5375aff568c75e02]
+
+	fix -Wdefaulted-function-deleted error
+
+
+2019-11-29  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [ce97a647a901b4ebb34dc6806ab0c4d2885e92e1]
+
+	tdf#126163: fix regression from 339b60ab77ce3f2037c9410eb14251c8132df08a
+
+
+2019-04-30  Martin Liška  <mliska@suse.cz>  [78e64f0edb4f3271a6ddbcdf9cba05138597bfca]
+
+	Fix build with gcc9.1
+
+	Change-Id: I8a0d7a0b51b5c537dbcfa8fdd34e816605b1f32e
+	Reviewed-on: https://gerrit.libreoffice.org/71573
+	Reviewed-by: Tomáš Chvátal <tchvatal@suse.cz>
+	Tested-by: Tomáš Chvátal <tchvatal@suse.cz>
+
+2019-03-05  Andrés Maldonado  <amaldonado@linagora.com>  [339b60ab77ce3f2037c9410eb14251c8132df08a]
+
+	Documentation updates
+
+	doc/other_documentation.dox:
+	* add instructions to build documentation
+	* replace a dead link with it's archived version on WaybackMachine
+
+	doc/Money.dox:
+	* replace `configure.in` with `configure.ac`
+	* update MoneyApp.cpp with the version at `examples/money/MoneyApp.cpp`
+	* remove all occurrences of `#include "stdafx.h"`  (stdafx.h does not exist in this example)
+	* replace all occurrences of CppUnit:: with CPPUNIT_NS::
+	* Undo a fix in commit 652d51e653568fbf652a248c7b9e01e72e6ec50f
+	  * This commit fixed the following error:
+		```
+		  Money( double amount, std::string currency )
+		    : m_amount( amount )
+		    , m_currency( m_currency )
+		```
+	    But this error was introduced on purpose, so that the user can see that an assertion failed
+	* fix  some spelling errors
+	* other minor edits
+
+	examples/money/MoneyTest.h:
+	* Updated to match doc/Money.dox
+
+	Change-Id: I4e90b1a3afadab94f7112c36fcb0d1c467169269
+	Reviewed-on: https://gerrit.libreoffice.org/67787
+	Reviewed-by: Thorsten Behrens <Thorsten.Behrens@CIB.de>
+	Tested-by: Thorsten Behrens <Thorsten.Behrens@CIB.de>
+
+2019-02-16  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [c37be301e883e6fda168e30093acfd0afcf63666]
+
+	use []  in AC macros
+
+
+2019-02-16  Andrés Maldonado  <amaldonado@linagora.com>  [9da32ab7dfbc17ecc9de6d19f64ae2bca9978871]
+
+	Modernize AM_INIT_AUTOMAKE syntax
+
+	For more info, see: https://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+
+	Change-Id: If27065b6d9c9245717ca24e0c0e1fa4c29bc3e5c
+	Reviewed-on: https://gerrit.libreoffice.org/67808
+	Reviewed-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+	Tested-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+
+2019-02-14  Tobias Groll  <groll@cs.uni-kl.de>  [51efd6f2184405dea29265ea0dd25c71b348404a]
+
+	Added some brackets to make it more clear for the compile which things belongs to the if body
+
+
+2019-02-14  Noel Grandin  <noel.grandin@collabora.co.uk>  [1caa3a0c66f009fe1a386d7559dc25054dad42a3]
+
+	custom tostring formatter to CPPUNIT_ASSERT_MESSAGE
+
+	Provide an extension trait message_to_string that allows client code
+	to call ASSERT_MESSAGE with their own string types.
+
+	Also provide a default extension trait that accepts std::ostream
+	messages.
+
+	Change-Id: I516f97063c34d86bc91c40e0ec147d5393e7b6ea
+
+2019-02-13  Stephan Bergmann  <sbergman@redhat.com>  [3788fccdd12ea1e3240d79e85d9146f6c264c6ec]
+
+	Unconditionally use C++11 [[noreturn]]
+
+	This helps avoid issues like <https://gerrit.libreoffice.org/plugins/gitiles/
+	core/+/9808486a89c6368f836579f8d8c0dda63fd0063c%5E%21> "Avoid
+	-Werror,-Wimplicit-fallthrough with clang-cl ...where CPPUNIT_FAIL is marked as
+	noreturn only for __GNUC__".
+
+	Change-Id: Idb33af7375f103f2dd7a7b4c3dbf20ce731b17ad
+	Reviewed-on: https://gerrit.libreoffice.org/67247
+	Reviewed-by: Stephan Bergmann <sbergman@redhat.com>
+	Tested-by: Stephan Bergmann <sbergman@redhat.com>
+
+2018-11-02  Miklos Vajna  <vmiklos@collabora.co.uk>  [48145587c4c2dc4f1e07d83073e136336c81ce79]
+
+	extensions: add CPPUNIT_TEST_FIXTURE()
+
+	This is similar to googletest's TEST_F() macro, allows to avoid spelling
+	out the test name in a suite only once, not 3 times.
+
+	Change-Id: I90804d271d046d8158678617d8db75ed6ca7c420
+	Reviewed-on: https://gerrit.libreoffice.org/61732
+	Reviewed-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+	Tested-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+
+2018-09-26  Stephan Bergmann  <sbergman@redhat.com>  [4f5cd3b486afb9c7be1903252b4ae3787137a454]
+
+	Avoid GCC 9 -Wdeprecated-copy
+
+	...when an implicitly-defined copy function is used that may in a future C++
+	standard be defined as deleted because of the user-declared destructor.  Just
+	declare all the four copy/move functions as defaulted for a consistent
+	interface.
+
+	(Originally addressed with LibreOffice commit
+	<https://gerrit.libreoffice.org/58042> "external/cppunit: silence
+	-Werror=deprecated-copy (GCC trunk towards GCC 9)".)
+
+	Change-Id: Ie38ac3a613e6fbc2e4045cb5b14c3f6d167c79c5
+	Reviewed-on: https://gerrit.libreoffice.org/58690
+	Reviewed-by: Stephan Bergmann <sbergman@redhat.com>
+	Tested-by: Stephan Bergmann <sbergman@redhat.com>
+
+2018-07-05  Blake Madden  <madindayton@outlook.com>  [742d887de85f378ab817a992cdfa0778971df093]
+
+	Fix the name of the VC project mentioned in the build instructions.
+
+
+2018-07-05  Blake Madden  <madindayton@outlook.com>  [653b1db88832b1c44327117510048e28eb136de3]
+
+	Make output XML report schema UTF-8 and remove Japanese specific information.
+
+
+2018-05-23  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [0f06c57cafbf050276bae3306aed3bcbb39ddc44]
+
+	next version will be 1.15.0
+
+
+2018-05-23  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [fd7111241a90b00eed45c7fb847101c732b9df83]
+
+	C++11 provides std::isfinite and std::isnan
+
+
+2018-05-23  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [03fe3b83eb95a20a3397a0b5c19c25f02986c888]
+
+	fix make distcheck, part2
+
+
+2018-05-23  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [66e39e76d7f9acc27522b0a25cd6e538ecc920f0]
+
+	fix make distcheck, part1
+
+
+2018-04-02  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [5ee5394ccec1e9fa07f2a84d73209472c8a1daab]
+
+	tdf#116653, avoid NOMINMAX redefinition warnings with mingw
+
+
+2017-12-24  Simon Barth  <Simon.Pe.Barth@gmail.com>  [a412733438e4a589069f4db2ae17bd6e32d07864]
+
+	contrib:cppunit2junit: parametrize testsuite name
+
+	The cppunit2junit XSL stylesheet has a hardcoded name for the testsuite.
+
+	Instead of putting a meaningless name, allow users to parametrize this
+	name when doing the transformation.
+
+	Change-Id: I2d0ebaf92cd0aa4d8ff3b3a2c423f4a8edd94807
+	Signed-off-by: Simon Barth <Simon.Pe.Barth@gmail.com>
+	Reviewed-on: https://gerrit.libreoffice.org/46357
+	Reviewed-by: David Tardon <dtardon@redhat.com>
+	Tested-by: David Tardon <dtardon@redhat.com>
+
+2017-09-15  Dimitrij Mijoski  <dmjpp@hotmail.com>  [1eaec743d1f1fbb5efeddd19aff07114cf4c7fc9]
+
+	Fix money example on propely linking with library with PKG_CHECK.
+
+	Change-Id: If42a50386402b7a601268cf8db80236c147009c1
+	Reviewed-on: https://gerrit.libreoffice.org/42206
+	Reviewed-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+	Tested-by: Markus Mohrhard <markus.mohrhard@googlemail.com>
+
+2017-07-20  Stephan Bergmann  <sbergman@redhat.com>  [85d24152f81bfcd463356330f1cc6257f485535f]
+
+	Report (un)signed char values numerically
+
+	...instead of as characters, as those values often represent numerical values
+	(e.g., sal_uInt8 aka unsigned char in LibreOffice), and often even have values
+	outside the printing ASCII range
+
+	Change-Id: I72727e98f5af616f6b0c03c57fc1119c0c11c1fc
+	Reviewed-on: https://gerrit.libreoffice.org/40138
+	Reviewed-by: David Tardon <dtardon@redhat.com>
+	Tested-by: David Tardon <dtardon@redhat.com>
+
+2017-05-26  David Tardon  <dtardon@redhat.com>  [c29651571c5e6e52dda92b85210c8ab9026a79fb]
+
+	set up git-review
+
+
+2017-04-15  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [c6aec99d114f4cb35cc7d9c1d09bae960c4c085b]
+
+	remove strange INSTALl notes for VS 2008
+
+
 2017-04-13  Markus Mohrhard  <markus.mohrhard@googlemail.com>  [b8a9398b3352c6560af646e1492aae4bf2bd3101]
 
 	more windows visual studio packaging fixes
